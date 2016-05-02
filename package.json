@@ -1,0 +1,34 @@
+{
+  "name": "electron-cucumber",
+  "version": "0.1.0",
+  "description": "Cucumber feature testing for Electron applications",
+  "keywords": [
+    "electron",
+    "cucumber",
+    "test",
+    "testing",
+    "tdd",
+    "feature"
+  ],
+  "homepage": "https://github.com/mfcollins3/electron-cucumber",
+  "bugs": "https://github.com/mfcollins3/electron-cucumber/issues",
+  "license": "Apache-2.0",
+  "author": {
+    "name": "Michael F. Collins, III",
+    "email": "michael.collins@naked.software",
+    "url": "http://www.michaelfcollins3.me"
+  },
+  "bin": {
+    "electron-cucumber": "./bin/electron-cucumber"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mfcollins3/electron-cucumber.git"
+  },
+  "dependencies": {
+    "cucumber": "^0.10.2",
+    "fs-extra": "^0.30.0",
+    "which": "^1.2.4"
+  },
+  "devDependencies": {}
+}
