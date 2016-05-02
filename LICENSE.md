@@ -19,7 +19,7 @@ entities that control, are controlled by, or are under common control
 with that entity. For the purposes of this definition, "control" means
 (i) the power, direct or indirect, to cause the direction or management
 of such entity, whether by contract or otherwise, or (ii) ownership of
-fifty percent (50%) or more of the outstanding shres, or (iii)
+fifty percent (50%) or more of the outstanding shares, or (iii)
 beneficial ownership of such entity.
 
 "You" (or "Your") shall mean an individual or Legal Entity exercising
@@ -39,7 +39,7 @@ form, made available under the License, as indicated by a copyright
 notice that is included in or attached to the work (an example is
 provided in the Appendix below).
 
-"Derivative Works" shell mean any work, whether in Source or Object
+"Derivative Works" shall mean any work, whether in Source or Object
 form, that is based on (or derived from) the Work and for which the
 editorial revisions, annotations, elaborations, or other modifications
 represent, as a whole, an original work of authorship. For the purposes
@@ -83,7 +83,7 @@ otherwise transfer the Work, where such license applies only to those
 patent claims licensable by such Contributor that are necessarily
 infringed by their Contribution(s) alone or by combination of their
 Contribution(s) within the Work to which such Contribition(s) was
-submitted. If You institute Patent litigation against any entity
+submitted. If You institute patent litigation against any entity
 (including a cross-claim or counterclaim in a lawsuit) alleging that the
 Work or a Contribution incorporated within the Work constitutes direct
 or contributory patent infringement, then any patent licenses granted to
