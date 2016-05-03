@@ -21,7 +21,7 @@ function World() {
   this.BrowserWindow = BrowserWindow;
 
   this.typeText = function(window, id, text) {
-    return new Promise(function(resolve) {
+    return new Promise(function(resolve, reject) {
       var code = `var input = document.getElementById('${id}');
       if (!input) {
         'FAIL: An input element with identifier ${id} was not found';
