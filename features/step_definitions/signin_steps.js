@@ -18,6 +18,7 @@ module.exports = function() {
   this.Given(/^the application is running$/, function(callback) {
     this.signInWindow = new this.BrowserWindow({width: 800, height: 600});
     this.signInWindow.loadURL('file://' + __dirname + '/signin.html');
+    this.signInWindow.webContents.openDevTools({mode: 'bottom'});
     callback();
   });
 
