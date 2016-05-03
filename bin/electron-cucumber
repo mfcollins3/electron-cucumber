@@ -41,32 +41,47 @@
 
 'use strict';
 
+const os = require('os');
 const path = require('path');
 const spawn = require('child_process').spawn;
 const which = require('which');
 
 which('electron', function(err, electron) {
-  electron = electron || process.env.ELECTRON_PATH;
-  if (!electron) {
-    try {
-      electron = require('electron-prebuilt');
-    } catch (_) {
-      console.error('');
-      console.error('  Can not find `electron` in the $PATH and $ELECTRON_PATH is not set.');
-      console.error('  Please either set $ELECTRON_PATH or `npm install electron-prebuilt`.');
-      console.error('');
-      process.exit(1);
-    }
+  var electronPath;
+  try {
+    electronPath = require('electron-prebuilt');
+  } catch (_) {
+    electronPath = process.env.ELECTRON_PATH || electron;
   }
 
-  run(electron);
+  if (!electronPath) {
+    console.error('');
+    console.error('  Can not find `electron` in the $PATH and $ELECTRON_PATH is not set.');
+    console.error('  Please either set $ELECTRON_PATH or `npm install electron-prebuilt`.');
+    console.error('');
+    process.exit(1);
+  }
+
+  run(electronPath);
 });
 
 function run(electron) {
   var args = process.argv.slice(2);
   args.unshift(path.resolve(path.join(__dirname, '../index.js')));
 
-  var child = spawn(electron, args);
+  // The path for Electron imports needs to be added to the NODE_PATH
+  // environment variable for step definitions and the support code to be
+  // able to reference Electron's imports.
+  var electronPath = path.dirname(electron);
+  var electronExportsPath = 'Resources/electron.asar/browser/api/exports';
+  if ('darwin' == os.platform()) {
+    electronExportsPath = '../' + electronExportsPath;
+  }
+  var electronModulesPath = path.join(electronPath, electronExportsPath);
+  var nodePath = process.env.NODE_PATH ? process.env.NODE_PATH + (os.platform().match(/^win/) ? ';' : ':') : '';
+  nodePath += electronModulesPath;
+
+  var child = spawn(electron, args, {env: {'NODE_PATH': nodePath}});
   child.stdout.pipe(process.stdout);
   process.stdin.pipe(child.stdin);
   child.stderr.on('data', function(data) {

@@ -30,5 +30,7 @@
     "fs-extra": "^0.30.0",
     "which": "^1.2.4"
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "electron-prebuilt": "^0.37.8"
+  }
 }

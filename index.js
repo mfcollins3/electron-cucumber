@@ -77,7 +77,7 @@ function exit(code) {
     if (err) {
       console.error(err);
     }
-
-    process.exit(code);
+    
+    app.exit(code);
   });
 }
