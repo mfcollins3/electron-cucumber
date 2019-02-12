@@ -46,6 +46,8 @@ const path = require('path');
 const {app} = require('electron');
 
 const Cucumber = require('cucumber');
+var colors = require('colors');
+colors.enabled = true;
 
 process.on('uncaughtException', function(err) {
   console.error(err);
@@ -57,25 +59,32 @@ var browserDataPath = path.join(os.tmpdir(), 'electron-cucumber-' + Date.now().t
 app.setPath('userData', browserDataPath);
 
 app.on('ready', function() {
-  var cli = Cucumber.Cli(process.argv);
-  cli.run(function(succeeded) {
-    var code = succeeded ? 0 : 1;
-    function exitNow() {
-      exit(code);
+  process.stdout.isTTY = true;
+  let cliArgs = {argv : process.argv, cwd: process.cwd(), stdout: process.stdout};
+  let cli = new Cucumber.Cli(cliArgs);
+  cli.run()
+  .then((succeeded) => {
+      function exitNow() {
+        exit(code);
+      }
+      
+      var code = succeeded.success ? 0 : 1;
+      if (process.stdout.write('')) {
+        exitNow();
+      } else {
+        process.stdout.on('drain', exitNow);
     }
+	})
+  .catch((error) => {
+		console.log(error)
+	});
 
-    if (process.stdout.write('')) {
-      exitNow();
-    } else {
-      process.stdout.on('drain', exitNow);
-    }
-  });
 });
 
 function exit(code) {
   fs.remove(browserDataPath, function(err) {
     if (err) {
-      console.error(err);
+      console.error("error!", err);
     }
     
     app.exit(code);
