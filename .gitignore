@@ -41,3 +41,6 @@ package-lock.json
 
 # OSX files
 .DS_Store
+
+# editor
+.idea
