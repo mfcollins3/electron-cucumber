@@ -14,13 +14,20 @@
  limitations under the License.
  */
 
-function World() {
-  const {app, BrowserWindow} = require('electron');
+// features/support/world.js
+const { setWorldConstructor, setDefaultTimeout, Before } = require('cucumber')
+var electron = require("electron")
+var app = require('electron').app
 
-  this.app = app;
-  this.BrowserWindow = BrowserWindow;
+class World {
 
-  this.typeText = function(window, id, text) {
+  constructor(){
+    this.app = app;
+    this.BrowserWindow = electron.BrowserWindow;
+  }
+
+
+  typeText (window, id, text) {
     return new Promise(function(resolve, reject) {
       var code = `var input = document.getElementById('${id}');
       if (!input) {
@@ -39,7 +46,7 @@ function World() {
     });
   };
 
-  this.clickButton = function(window, id) {
+  clickButton (window, id) {
     return new Promise(function(resolve, reject) {
       var code = `var button = document.getElementById('${id}');
       if (!button) {
@@ -59,6 +66,4 @@ function World() {
   };
 }
 
-module.exports = function() {
-  this.World = World;
-};
+setWorldConstructor(World)

@@ -13,22 +13,22 @@
  See the License for the specific language governing permissions and
  limitations under the License.
  */
+const { Before, Given, When, Then } = require('cucumber')
+const { BrowserWindow } = require('electron');
 
-module.exports = function() {
-  this.Given(/^the application is running$/, function(callback) {
+Given(/^the application is running$/, function(callback) {
     this.signInWindow = new this.BrowserWindow({width: 800, height: 600});
     this.signInWindow.loadURL('file://' + __dirname + '/signin.html');
     this.signInWindow.webContents.openDevTools({mode: 'bottom'});
     callback();
   });
 
-  this.When(/^I enter my credentials into the sign in form$/, function() {
+When(/^I enter my credentials into the sign in form$/, function() {
     return this.typeText(this.signInWindow, 'username', 'Michael')
         .then(() => this.typeText(this.signInWindow, 'password', 'password'))
         .then(() => this.clickButton(this.signInWindow, 'signin'));
   });
 
-  this.Then(/^I will be granted access to the application$/, function(callback) {
+Then(/^I will be granted access to the application$/, function(callback) {
     callback(null, 'pending');
   });
-};

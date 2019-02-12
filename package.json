@@ -26,11 +26,11 @@
     "url": "https://github.com/mfcollins3/electron-cucumber.git"
   },
   "dependencies": {
-    "cucumber": "^0.10.2",
-    "fs-extra": "^0.30.0",
-    "which": "^1.2.4"
+    "cucumber": "^5.1.0",
+    "fs-extra": "^7.0.1",
+    "which": "^1.3.1"
   },
   "devDependencies": {
-    "electron-prebuilt": "^0.37.8"
+    "electron-prebuilt": "^1.4.13"
   }
 }
